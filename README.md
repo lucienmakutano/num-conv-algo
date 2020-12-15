@@ -20,9 +20,10 @@ This repo Implements two algorithms
 
 ## How to use
 
-To run the any of the algorithms,
+To compile any of the algorithms,
 you have to open it in VS Code then
-press `ctl + shift + B` for windows users.
+press `ctl + shift + B` for windows users
+and `Cmd + shift + B` for Mac users.
 
 Or You can compiler it manually using any C++ compiler
 then run the executable file `.exe`.
