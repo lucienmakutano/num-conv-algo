@@ -6,7 +6,6 @@ using namespace std;
 const float HEXRADIX = 16.0;
 const float OCTRADIX = 8.0;
 
-string *split_(string);
 string decimalToBinary(int);
 string decimalToHexOROct(int, float);
 string digitToCorrespondingHexVal(int);
@@ -57,15 +56,8 @@ string decimalToBinary(int decNum)
 
   while (decNum > 0)
   {
-    if (decNum % 2 == 0)
-    {
-      res = "0" + res;
-    }
-    else
-    {
-      res = "1" + res;
-    }
-
+    int rem = decNum % 2;
+    res = to_string(rem) + res;
     decNum = decNum / 2;
   }
 
@@ -84,40 +76,14 @@ string decimalToHexOROct(int decNum, float radix)
   while (decNum > 0)
   {
     float temp_res = decNum / radix;
-    string str_temp_res = to_string(temp_res);
-    string *whole_and_dec_num = split_(str_temp_res);
-    int remainder = radix * stof(whole_and_dec_num[1]);
+    int int_part = temp_res;
+    float fract_part = temp_res - int_part;
+    int remainder = radix * fract_part;
     string hexVal = digitToCorrespondingHexVal(remainder);
 
     res = hexVal + res;
-    decNum = int(temp_res);
+    decNum = int_part;
   }
-
-  return res;
-}
-
-string *split_(string str)
-{
-  string *res = new string[2];
-  string dec = "0";
-  string wholen;
-
-  for (int i = 0; i < str.length(); i++)
-  {
-    if (str[0] == '.')
-      break;
-
-    wholen.push_back(str[0]);
-    str = str.substr(1);
-  }
-
-  for (int i = 0; i < str.length(); i++)
-  {
-    dec += str[i];
-  }
-
-  res[0] = wholen;
-  res[1] = dec;
 
   return res;
 }
